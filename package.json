@@ -1,0 +1,24 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logivy/koa2-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Logivy/koa2-api/issues"
+  },
+  "homepage": "https://github.com/Logivy/koa2-api#readme",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
+}
