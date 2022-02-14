@@ -1,12 +1,28 @@
-const Koa = require('koa')
 
-const app = new Koa()
-const port = 3000;
+const mongoose = require('mongoose')
+const app = require('./app/index')
+const { APP_PORT,
+  MONGODB_HOST,
+  MONGODB_PORT,
+  MONGODB_USER,
+  MONGODB_PWD,
+  MONGODB_DB } = require('./config/config')
 
-app.use(async (ctx, next) => {
-  ctx.body = "hello world"
+const uri = `mongodb://${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_DB}`;
+
+mongoose.connect(uri).then((res, err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('connect successfully');
+  }
 })
 
-app.listen(port, () => {
-  console.log(`server is running on http://localhost:${port}`);
+// MongoDB不会重新连接，需要处理之后的错误事件
+mongoose.connection.on('error', err => {
+  console.error(err);
+})
+
+app.listen(APP_PORT, () => {
+  console.log(`server is running on http://localhost:${APP_PORT}`)
 })
